@@ -1,10 +1,1 @@
-[
-  {
-    "id": "1",
-    "titulo": "Cancion 1",
-    "artista": "art editado",
-    "tono": "Tono y"
-  },
-  { "id": 3569, "titulo": "can2", "artista": "art2", "tono": "ttttt" },
-  { "id": 7696, "titulo": "hola", "artista": "art3", "tono": "tone3" }
-]
+[{"id":"1","titulo":"Cancion 1","artista":"art editado","tono":"Tono y"},{"id":3569,"titulo":"can2","artista":"art2","tono":"ttttt"},{"id":7696,"titulo":"hola","artista":"art3","tono":"tone3"},{"id":1169,"titulo":"asd","artista":"asd","tono":"dasd"}]

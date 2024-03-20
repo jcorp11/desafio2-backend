@@ -38,6 +38,7 @@ app.post("/canciones", async (req, res) => {
     const canciones = await getCanciones();
     canciones.push(cancion);
     await writeFile("repertorio.json", JSON.stringify(canciones));
+    res.json(cancion);
   }
 });
 
