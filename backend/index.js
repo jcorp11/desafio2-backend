@@ -34,11 +34,11 @@ app.post("/canciones", async (req, res) => {
   const cancion = req.body;
   if (!cancion.titulo) {
     res.status(400).json({ message: "Cancion Vacia" });
+  } else {
+    const canciones = await getCanciones();
+    canciones.push(cancion);
+    await writeFile("repertorio.json", JSON.stringify(canciones));
   }
-  const canciones = await getCanciones();
-  canciones.push(cancion);
-  await writeFile("repertorio.json", JSON.stringify(canciones));
-  res.json(canciones);
 });
 
 app.put("/canciones/:id", async (req, res) => {
