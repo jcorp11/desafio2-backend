@@ -30,6 +30,40 @@ app.get("/canciones", async (req, res) => {
   res.json(canciones);
 });
 
+app.post("/canciones", async (req, res) => {
+  const cancion = req.body;
+  if (!cancion.titulo) {
+    res.status(400).json({ message: "Cancion Vacia" });
+  }
+  const canciones = await getCanciones();
+  canciones.push(cancion);
+  await writeFile("repertorio.json", JSON.stringify(canciones));
+  res.json(canciones);
+});
+
+app.put("/canciones/:id", async (req, res) => {
+  const { id } = req.params;
+  const cancion = req.body;
+  const canciones = await getCanciones();
+  const index = canciones.findIndex((c) => c.id == id);
+  canciones[index] = cancion;
+  await writeFile("repertorio.json", JSON.stringify(canciones));
+  res.json(canciones);
+});
+
+app.delete("/canciones/:id", async (req, res) => {
+  const { id } = req.params;
+  let canciones = await getCanciones();
+  const cancion = canciones.find((c) => c.id == id);
+  if (!cancion) {
+    return res.status(404).json({ message: "Cancion no encontrada" });
+  }
+
+  canciones = canciones.filter((c) => c.id != id);
+  await writeFile("repertorio.json", JSON.stringify(canciones));
+  res.json(canciones);
+});
+
 app.listen(PORT, () => {
-  console.log(`Desafio 2 app listening on port ${PORT}`);
+  console.log(`Desafio 2 listening on port ${PORT}`);
 });
